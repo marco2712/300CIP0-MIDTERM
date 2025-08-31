@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  node1:
+    image: japeto/parallel-tools
+    container_name: node1
+    hostname: node1
+    networks:
+      - mpi-net
+    working_dir: /home/japeto/app
+    volumes:
+      - ./:/home/japeto/app
+    tty: true
+    stdin_open: true
+
+  node2:
+    image: japeto/parallel-tools
+    container_name: node2
+    hostname: node2
+    networks:
+      - mpi-net
+    working_dir: /home/japeto/app
+    volumes:
+      - ./:/home/japeto/app
+    tty: true
+    stdin_open: true
+
+  node3:
+    image: japeto/parallel-tools
+    container_name: node3
+    hostname: node3
+    networks:
+      - mpi-net
+    working_dir: /home/japeto/app
+    volumes:
+      - ./:/home/japeto/app
+    tty: true
+    stdin_open: true
+
+networks:
+  mpi-net:
+    driver: bridge
