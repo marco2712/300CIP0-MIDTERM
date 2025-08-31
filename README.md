@@ -17,7 +17,7 @@ Filtros soportados:
 | **Secuencial**   | `g++ -o processor processor.cpp filter.cpp imagen.cpp PGMimage.cpp PPMimage.cpp timer.cpp`    | `./processor ./imagenes/lena.pgm ./imagenes/lena_blur.pgm --f blur`       |
 | **Pthreads**     | `g++ -o processor_pthread processor_pthread.cpp filter.cpp imagen.cpp PGMimage.cpp PPMimage.cpp timer.cpp -lpthread` | `./processor_pthread ./imagenes/fruit.ppm ./imagenes/fruit_col_pthread_la.ppm --f laplace` |
 | **OpenMP**       | `g++ -o image_processor processor_omp.cpp filter.cpp imagen.cpp PGMimage.cpp PPMimage.cpp timer.cpp -fopenmp` | `./image_processor ./imagenes/fruit.ppm ./imagenes/fruit_result.ppm` |
-| **MPI**          | mpic++ -std=c++11 -Wall -Wextra -g processor_mpi.cpp imagen.cpp PGMimage.cpp PPMimage.cpp filter.cpp timer.cpp -o mpi_processor timer.cpp` | `mpirun -np 4 ./mpi_processor ./imagenes/lena.pgm ./imagenes/lena_simple_mpi.pgm --f blur` |
+| **MPI**          | `mpic++ -std=c++11 -Wall -Wextra -g processor_mpi.cpp imagen.cpp PGMimage.cpp PPMimage.cpp filter.cpp timer.cpp -o mpi_processor timer.cpp` | `mpirun -np 4 ./mpi_processor ./imagenes/lena.pgm ./imagenes/lena_simple_mpi.pgm --f blur` |
 
 ---
 
@@ -56,7 +56,7 @@ docker-compose up -d
 docker run -dit --name node2 --hostname node2 --network mpi-net \
   -v "%cd%":/home/japeto/app -w /home/japeto/app japeto/parallel-tools:v64 bash
 
-### se copila en el host
+### se ejecuta en el host
 mpirun -np 4 ./mpi_processor ./imagenes/lena.pgm ./imagenes/lena_simple_mpi.pgm --f blur
 
 ### Bajar contenedores
