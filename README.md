@@ -61,6 +61,7 @@ mpirun -np 4 ./mpi_processor ./imagenes/lena.pgm ./imagenes/lena_simple_mpi.pgmÂ
 
 ### Bajar contenedores
 docker-compose down
-docker network rm mpi-net   # si fue creada manualmente
+
+docker network rm mpi-net    # si fue creada manualmente
 
 
