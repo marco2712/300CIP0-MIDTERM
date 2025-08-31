@@ -17,8 +17,7 @@ Filtros soportados:
 | **Secuencial**   | `g++ -o processor processor.cpp filter.cpp imagen.cpp PGMimage.cpp PPMimage.cpp timer.cpp`    | `./processor ./imagenes/lena.pgm ./imagenes/lena_blur.pgm --f blur`       |
 | **Pthreads**     | `g++ -o processor_pthread processor_pthread.cpp filter.cpp imagen.cpp PGMimage.cpp PPMimage.cpp timer.cpp -lpthread` | `./processor_pthread ./imagenes/fruit.ppm ./imagenes/fruit_col_pthread_la.ppm --f laplace` |
 | **OpenMP**       | `g++ -o image_processor processor_omp.cpp filter.cpp imagen.cpp PGMimage.cpp PPMimage.cpp timer.cpp -fopenmp` | `./image_processor ./imagenes/fruit.ppm ./imagenes/fruit_result.ppm` |
-| **MPI**          | mpic++ -std=c++11 -Wall -Wextra -g processor_mpi.cpp imagen.cpp PGMimage.cpp PPMimage.cpp filter.cpp timer.cpp -o mpi_processor
-p timer.cpp` | `mpirun -np 4 ./mpi_processor ./imagenes/lena.pgm ./imagenes/lena_simple_mpi.pgm --f blur` |
+| **MPI**          | mpic++ -std=c++11 -Wall -Wextra -g processor_mpi.cpp imagen.cpp PGMimage.cpp PPMimage.cpp filter.cpp timer.cpp -o mpi_processor timer.cpp` | `mpirun -np 4 ./mpi_processor ./imagenes/lena.pgm ./imagenes/lena_simple_mpi.pgm --f blur` |
 
 ---
 
@@ -50,17 +49,17 @@ p timer.cpp` | `mpirun -np 4 ./mpi_processor ./imagenes/lena.pgm ./imagenes/lena
 ### 1️⃣ Levantar los nodos
 Se incluye un archivo `docker-compose.yml` que crea 3 nodos (`node1`, `node2`, `node3`) en la misma red `mpi-net`.
 
-```bash
+### bash
 docker-compose up -d
 
-```crar cada nodo con su nombre
+### crear cada nodo con su nombre
 docker run -dit --name node2 --hostname node2 --network mpi-net \
   -v "%cd%":/home/japeto/app -w /home/japeto/app japeto/parallel-tools:v64 bash
 
-```se copila en el host
+### se copila en el host
 mpirun -np 4 ./mpi_processor ./imagenes/lena.pgm ./imagenes/lena_simple_mpi.pgm --f blur
 
-```Bajar contenedores
+### Bajar contenedores
 docker-compose down
 docker network rm mpi-net   # si fue creada manualmente
 
